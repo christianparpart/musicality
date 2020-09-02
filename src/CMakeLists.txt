@@ -1,3 +1,7 @@
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(portaudio-2.0 REQUIRED IMPORTED_TARGET portaudio-2.0)
+
 set(MUSICALITY_SRCS
 	main.cpp
 )
@@ -16,7 +20,6 @@ if(WIN32)
         set_target_properties(musicality PROPERTIES
             # Tell MSVC to create a GUI application.
             WIN32_EXECUTABLE ON
-
             # Tell MSVC to use main instead of WinMain for Windows subsystem executables.
             LINK_FLAGS "/ENTRY:mainCRTStartup"
         )
@@ -36,5 +39,4 @@ elseif(APPLE)
     )
 endif()
 
-set(MUSICALITY_LIBRARIES )
-target_link_libraries(musicality PRIVATE ${MUSICALITY_LIBRARIES})
+target_link_libraries(musicality PUBLIC PkgConfig::portaudio-2.0)
