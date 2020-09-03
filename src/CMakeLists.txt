@@ -4,6 +4,7 @@ pkg_check_modules(portaudio-2.0 REQUIRED IMPORTED_TARGET portaudio-2.0)
 
 set(MUSICALITY_SRCS
 	main.cpp
+    PitchDetector.cpp PitchDetector.h
 )
 
 add_executable(musicality ${MUSICALITY_SRCS})
